@@ -26,8 +26,11 @@ public class PerformanceTest extends AbstractJavaSamplerClient {
 		try {
 			sampleResult.sampleStart();	//jmeter开始统计响应时间
 
+			Thread.sleep(1000);			//模拟长时间操作
 			ClassToBeTested sut = new ClassToBeTested();
 			String testResult = sut.sayHello(name);
+
+			sampleResult.sampleEnd();
 
 			sampleResult.setResponseData(testResult);
 			sampleResult.setDataType(SampleResult.TEXT);
